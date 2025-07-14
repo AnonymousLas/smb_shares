@@ -22,6 +22,17 @@
 pip install impacket colorama
 ```
 🛠 Uso
+```bash
+PROTO   IP              PORT  DOMAIN      SHARE                 PERM          REMARK
+------------------------------------------------------------------------------------------
+SMB      10.10.11.222    445   AUTHORITY   ADMIN$                -             -
+SMB      10.10.11.222    445   AUTHORITY   C$                    -             -
+SMB      10.10.11.222    445   AUTHORITY   Department Shares     ACCESS DENIED -
+SMB      10.10.11.222    445   AUTHORITY   Development           READ          -
+SMB      10.10.11.222    445   AUTHORITY   IPC$                  READ          -
+SMB      10.10.11.222    445   AUTHORITY   NETLOGON              ACCESS DENIED -
+SMB      10.10.11.222    445   AUTHORITY   SYSVOL                ACCESS DENIED -
+```
 Con acceso anónimo o guest
 ```bash
 python smb_loot_plus.py 10.10.11.222 -u guest -p ""
