@@ -91,12 +91,20 @@ def analyze_file(filepath):
         pass
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="🧰 SMB Share Looter con Árbol y Detección de Credenciales")
-    parser.add_argument("ip", help="IP del objetivo")
+    parser = argparse.ArgumentParser(
+        description="🧰 SMB Share Looter con Árbol y Detección de Credenciales"
+    )
+    parser.add_argument("ip", nargs="?", help="IP del objetivo")
     parser.add_argument("-u", "--username", default="", help="Nombre de usuario")
     parser.add_argument("-p", "--password", default="", help="Contraseña")
-    parser.add_argument("-d", "--domain", default="", help="Dominio")
+    parser.add_argument("-d", "--domain", default="", help="Dominio (opcional)")
     parser.add_argument("-o", "--output", default="loot", help="Directorio de descarga")
 
     args = parser.parse_args()
+
+    if not args.ip:
+        print("[!] Uso incorrecto. Debes especificar al menos la IP del objetivo.\n")
+        parser.print_help()
+        exit(1)
+
     check_smb(args.ip, args.username, args.password, args.domain, args.output)
